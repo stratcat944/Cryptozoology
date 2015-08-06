@@ -33,6 +33,24 @@ cryptApp.factory('animalFactory', function($resource){
 cryptApp.controller('cryptAnimalList', function($scope, animalFactory){
 	console.log('I AM THE CONTROLLER', animalFactory);
 
+	$scope.sortAnimals + function(){
+		console.log('sort order!', $scope.sortOrder)
+
+		if ($scope.sortOrder === 'true'){
+			$scope.sortOrder = true
+		}
+		else {
+			$scope.sortOrder = false
+		}
+	}
+
+	$scope.lowCal = function(animal){
+		return animal.calories < 1000
+	}
+	$scope.bulkup = function(animal){
+		return animal.calories > 1000
+	}
+
 	$scope.animals = animalFactory.animals;
 
 	$scope.addAnimal = function(){
