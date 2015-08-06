@@ -8,11 +8,17 @@ cryptApp.config(function($routeProvider){
 			templateUrl	: '/templates/cryptanimallist',
 			controller 	: 'cryptAnimalList'
 		})
+		.when('/animals/:id', {
+			templateUrl : '/templates/cryptanimal',
+			controller : 'cryptAnimalPage'
+
+		})
 
 
 });
 
 cryptApp.factory('animalFactory', function($resource){
+	
 	var model = $resource('/api/animals/:id', {id : '@_id'})
 
 	// this._id
@@ -64,3 +70,18 @@ cryptApp.controller('cryptAnimalList', function($scope, animalFactory){
 		this.newAnimal = {};
 	}
 });
+
+
+cryptApp.controller('cryptAnimalPage', function($scope, animalFactory, $routeParams){
+
+	console.log('Animal with this id : ', $routeParams.id)
+
+	$scope.animal = animalFactory.model.get({_id : $routeParams.id})
+});
+
+
+
+
+
+
+

@@ -15,7 +15,8 @@ select(ng-change="sortAnimals()", ng-model="sortOrder", ng-options="option.val a
 
 .animal-list
 	.animal(ng-repeat="animal in animals | orderBy:'calories':sortOrder")
-		h4 {{ animal.name | filter:someFilter }}
+		a(ng-href="#/animals/{{animal._id}}")
+			h4 {{ animal.name }}
 		p Colring in the Wild : {{animal.coloring}}
 		p Calories in this tasty animal : {{animal.calories}}
 		ul

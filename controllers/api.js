@@ -5,9 +5,22 @@ var apiController = {
 	get 	: function(req, res){
 			// want to be able to get ALL animals or just one.
 
+			// One animal
+
+			var requestID = req.query._id;
+
+			if (requestID){
+				// One Animal
+				CryptAnimal.findOne({_id : requestID}, function(err, animal){
+					res.send(animal)
+				})
+
+			} else {
+
 			CryptAnimal.find({}, function(err, animals){
 				res.send(animals)
 			});
+		}
 	},
 
 	create 	: function(req, res){
